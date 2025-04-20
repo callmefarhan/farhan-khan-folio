@@ -34,6 +34,14 @@ const Index = () => {
   ];
 
   useEffect(() => {
+    // Make sure all sections are visible on load
+    const revealSections = () => {
+      const sections = document.querySelectorAll('.reveal-section');
+      sections.forEach(section => {
+        section.classList.add('reveal');
+      });
+    };
+
     const handleMouseMove = (e: MouseEvent) => {
       const profileImage = document.querySelector('.profile-image') as HTMLElement;
       if (profileImage) {
@@ -53,24 +61,31 @@ const Index = () => {
       (el as HTMLElement).style.animationDelay = `${i * 0.2}s`;
     });
 
+    // Use IntersectionObserver for scroll animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('reveal');
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
     document.querySelectorAll('.reveal-section').forEach((section) => {
       observer.observe(section);
     });
 
     document.addEventListener('mousemove', handleMouseMove);
+    
+    // If loading is complete, reveal all sections
+    if (!isLoading) {
+      revealSections();
+    }
+    
     return () => {
       observer.disconnect();
       document.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [isLoading]);
 
   return (
     <>
@@ -83,7 +98,7 @@ const Index = () => {
           
           {/* Hero Section */}
           <main className="pt-32 px-12 max-w-7xl mx-auto">
-            <div className="min-h-screen flex items-center gap-12">
+            <section id="top" className="min-h-screen flex items-center gap-12">
               <div className="flex-1">
                 <h1 className="blur-reveal text-7xl font-sans font-bold mb-6">
                   Farhan Khan
@@ -106,16 +121,16 @@ const Index = () => {
                   className="profile-image w-96 h-96 rounded-full overflow-hidden transition-transform duration-200 hover:scale-105"
                   style={{ 
                     transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
-                    backgroundImage: 'url("/lovable-uploads/013c771e-c9b1-4144-b868-88332c4db136.png")',
+                    backgroundImage: 'url("/lovable-uploads/05914925-293a-4f5f-8e01-244a4518a4d4.png")',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}
                 />
               </div>
-            </div>
+            </section>
 
             {/* About Section */}
-            <div id="about" className="min-h-screen reveal-section">
+            <section id="about" className="min-h-screen reveal-section py-24">
               <h2 className="text-4xl font-sans font-bold mb-12 split-text">About Me</h2>
               <div className="space-y-6 text-[#8E9196]">
                 <p className="text-lg leading-relaxed reveal-text">
@@ -132,10 +147,10 @@ const Index = () => {
                   social media, networking, and storytelling.
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Work Section */}
-            <div id="work" className="min-h-screen reveal-section">
+            <section id="work" className="min-h-screen reveal-section py-24">
               <h2 className="text-4xl font-sans font-bold mb-12 split-text">Work</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {projects.map((project, index) => (
@@ -146,10 +161,10 @@ const Index = () => {
                   </Card>
                 ))}
               </div>
-            </div>
+            </section>
 
             {/* Me Outside Tech Section */}
-            <div id="outside-tech" className="min-h-screen reveal-section">
+            <section id="outside-tech" className="min-h-screen reveal-section py-24">
               <h2 className="text-4xl font-sans font-bold mb-12 split-text">Me, Outside of Tech</h2>
               <div className="space-y-8 text-[#8E9196]">
                 <div className="reveal-text flex items-start gap-6">
@@ -171,10 +186,10 @@ const Index = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </section>
 
             {/* Contact Section */}
-            <div id="contact" className="min-h-screen reveal-section">
+            <section id="contact" className="min-h-screen reveal-section py-24">
               <h2 className="text-4xl font-sans font-bold mb-12 split-text">Let's Connect</h2>
               <div className="grid grid-cols-2 gap-8">
                 <a href="#" className="reveal-text group p-8 border border-[#9b87f5] hover:bg-[#9b87f5] transition-all duration-300">
@@ -194,7 +209,7 @@ const Index = () => {
                   <span className="text-[#8E9196] group-hover:text-white transition-colors">See my visual side</span>
                 </a>
               </div>
-            </div>
+            </section>
           </main>
         </div>
       )}
