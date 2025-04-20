@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import CustomCursor from '../components/CustomCursor';
 import Navbar from '../components/Navbar';
@@ -7,6 +8,30 @@ import { Card } from '@/components/ui/card';
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  // Define the projects array
+  const projects = [
+    {
+      title: "Career Counseling Platform",
+      description: "A platform helping students find their career path",
+      tech: "React, TypeScript, Tailwind"
+    },
+    {
+      title: "Athlete Performance Tracker",
+      description: "Real-time performance analytics for athletes",
+      tech: "React, Firebase, D3.js"
+    },
+    {
+      title: "Social Media Dashboard",
+      description: "Analytics and management platform",
+      tech: "Next.js, Supabase, Tailwind"
+    },
+    {
+      title: "AI Learning Assistant",
+      description: "Personalized learning companion",
+      tech: "React, OpenAI, Node.js"
+    }
+  ];
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
