@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import CustomCursor from '../components/CustomCursor';
 import Navbar from '../components/Navbar';
@@ -154,11 +153,19 @@ const Index = () => {
               <h2 className="text-4xl font-sans font-bold mb-12 split-text">Work</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {projects.map((project, index) => (
-                  <Card key={index} className="reveal-text group p-8 border border-[#9b87f5]/20 hover:border-[#9b87f5] bg-transparent transition-all duration-300">
-                    <h3 className="text-2xl font-sans mb-4 text-[#9b87f5]">{project.title}</h3>
-                    <p className="text-[#8E9196] mb-4">{project.description}</p>
-                    <p className="text-sm text-[#8E9196]/70">{project.tech}</p>
-                  </Card>
+                  <a 
+                    key={index} 
+                    href="https://github.com/callmefarhan" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block" // Added block to make the whole card clickable, or you can wrap just the title.
+                  >
+                    <Card className="reveal-text group p-8 border border-[#9b87f5]/20 hover:border-[#9b87f5] bg-transparent transition-all duration-300 h-full">
+                      <h3 className="text-2xl font-sans mb-4 text-[#9b87f5]">{project.title}</h3>
+                      <p className="text-[#8E9196] mb-4">{project.description}</p>
+                      <p className="text-sm text-[#8E9196]/70">{project.tech}</p>
+                    </Card>
+                  </a>
                 ))}
               </div>
             </section>
@@ -191,20 +198,40 @@ const Index = () => {
             {/* Contact Section */}
             <section id="contact" className="min-h-screen reveal-section py-24">
               <h2 className="text-4xl font-sans font-bold mb-12 split-text">Let's Connect</h2>
-              <div className="grid grid-cols-2 gap-8">
-                <a href="#" className="reveal-text group p-8 border border-[#9b87f5] hover:bg-[#9b87f5] transition-all duration-300">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <a 
+                  href="https://www.linkedin.com/in/farhan-khan-00817a296/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="reveal-text group p-8 border border-[#9b87f5] hover:bg-[#9b87f5] transition-all duration-300"
+                >
                   <span className="text-2xl block mb-2">LinkedIn</span>
                   <span className="text-[#8E9196] group-hover:text-white transition-colors">Let's connect professionally</span>
                 </a>
-                <a href="#" className="reveal-text group p-8 border border-[#9b87f5] hover:bg-[#9b87f5] transition-all duration-300">
+                <a 
+                  href="https://github.com/callmefarhan" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="reveal-text group p-8 border border-[#9b87f5] hover:bg-[#9b87f5] transition-all duration-300"
+                >
                   <span className="text-2xl block mb-2">GitHub</span>
                   <span className="text-[#8E9196] group-hover:text-white transition-colors">Check out my code</span>
                 </a>
-                <a href="#" className="reveal-text group p-8 border border-[#9b87f5] hover:bg-[#9b87f5] transition-all duration-300">
+                <a 
+                  href="https://x.com/FarhanK42363" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="reveal-text group p-8 border border-[#9b87f5] hover:bg-[#9b87f5] transition-all duration-300"
+                >
                   <span className="text-2xl block mb-2">Twitter</span>
                   <span className="text-[#8E9196] group-hover:text-white transition-colors">Follow my thoughts</span>
                 </a>
-                <a href="#" className="reveal-text group p-8 border border-[#9b87f5] hover:bg-[#9b87f5] transition-all duration-300">
+                <a 
+                  href="https://www.instagram.com/iiamfarhankhann/?next=%2F" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="reveal-text group p-8 border border-[#9b87f5] hover:bg-[#9b87f5] transition-all duration-300"
+                >
                   <span className="text-2xl block mb-2">Instagram</span>
                   <span className="text-[#8E9196] group-hover:text-white transition-colors">See my visual side</span>
                 </a>
