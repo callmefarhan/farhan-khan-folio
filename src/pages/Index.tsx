@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import CustomCursor from '../components/CustomCursor';
 import Navbar from '../components/Navbar';
@@ -7,6 +8,7 @@ import { Card } from '@/components/ui/card';
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
 
   // Define the projects array
   const projects = [
@@ -48,8 +50,9 @@ const Index = () => {
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
         
-        const deltaX = (e.clientX - centerX) * 0.1;
-        const deltaY = (e.clientY - centerY) * 0.1;
+        // Make movement more subtle by reducing the factor from 0.1 to 0.05
+        const deltaX = (e.clientX - centerX) * 0.05;
+        const deltaY = (e.clientY - centerY) * 0.05;
         
         setMousePosition({ x: deltaX, y: deltaY });
       }
@@ -117,14 +120,52 @@ const Index = () => {
               </div>
               <div className="flex-1 flex justify-center items-center">
                 <div 
-                  className="profile-image w-96 h-96 rounded-full overflow-hidden transition-transform duration-200 hover:scale-105"
-                  style={{ 
-                    transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
-                    backgroundImage: 'url("/lovable-uploads/05914925-293a-4f5f-8e01-244a4518a4d4.png")',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                  }}
-                />
+                  className="profile-image-container relative"
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                >
+                  {/* Main profile image with smooth transition */}
+                  <div 
+                    className="profile-image w-96 h-96 rounded-full overflow-hidden transition-transform duration-300 ease-out hover:scale-105"
+                    style={{ 
+                      transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+                      backgroundImage: 'url("/lovable-uploads/0b94a337-800e-46de-a5cf-0d98363f91d5.png")',
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
+                  />
+                  
+                  {/* Animated doodles that appear on hover */}
+                  <div className={`absolute top-0 left-0 w-full h-full pointer-events-none transition-opacity duration-300 ${isHovering ? 'opacity-100' : 'opacity-0'}`}>
+                    {/* Circle doodle */}
+                    <div className="absolute w-10 h-10 border-2 border-[#9b87f5] rounded-full -top-4 -left-4 animate-spin-slow"></div>
+                    
+                    {/* Squiggly line */}
+                    <div className="absolute w-16 h-1 bg-[#9b87f5] top-1/4 -right-8 animate-pulse" 
+                      style={{clipPath: "path('M0,10 Q5,0 10,10 Q15,20 20,10 Q25,0 30,10 Q35,20 40,10')"}}></div>
+                    
+                    {/* Star doodle */}
+                    <div className="absolute bottom-10 -left-8 animate-bounce-slow">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L14.4 9.6H22L15.8 14.4L18.2 22L12 17.2L5.8 22L8.2 14.4L2 9.6H9.6L12 2Z" fill="#9b87f5" />
+                      </svg>
+                    </div>
+                    
+                    {/* Plus symbol */}
+                    <div className="absolute -bottom-6 right-10 animate-pulse">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5V19M5 12H19" stroke="#9b87f5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    
+                    {/* Dots */}
+                    <div className="absolute top-10 -right-6 flex space-x-1 animate-bounce-slow">
+                      <div className="w-2 h-2 bg-[#9b87f5] rounded-full"></div>
+                      <div className="w-2 h-2 bg-[#9b87f5] rounded-full"></div>
+                      <div className="w-2 h-2 bg-[#9b87f5] rounded-full"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </section>
 
