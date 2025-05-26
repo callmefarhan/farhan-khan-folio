@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import CustomCursor from '../components/CustomCursor';
 import Navbar from '../components/Navbar';
@@ -121,12 +120,13 @@ const Index = () => {
               <div className="flex-1 flex justify-center items-center">
                 <div 
                   className="profile-image-container relative"
+                  style={{ transform: 'translateY(-2rem)' }} // Added to move slightly upwards
                   onMouseEnter={() => setIsHovering(true)}
                   onMouseLeave={() => setIsHovering(false)}
                 >
                   {/* Main profile image with smooth transition */}
                   <div 
-                    className="profile-image w-96 h-96 rounded-full overflow-hidden transition-transform duration-300 ease-out hover:scale-105"
+                    className="profile-image w-[28rem] h-[28rem] rounded-full overflow-hidden transition-transform duration-300 ease-out hover:scale-105" // Increased size
                     style={{ 
                       transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
                       backgroundImage: 'url("/lovable-uploads/0b94a337-800e-46de-a5cf-0d98363f91d5.png")',
@@ -137,33 +137,58 @@ const Index = () => {
                   
                   {/* Animated doodles that appear on hover */}
                   <div className={`absolute top-0 left-0 w-full h-full pointer-events-none transition-opacity duration-300 ${isHovering ? 'opacity-100' : 'opacity-0'}`}>
-                    {/* Circle doodle */}
-                    <div className="absolute w-10 h-10 border-2 border-[#9b87f5] rounded-full -top-4 -left-4 animate-spin-slow"></div>
+                    {/* Circle doodle - updated animation */}
+                    <div className="absolute w-10 h-10 border-2 border-[#9b87f5] rounded-full -top-4 -left-4 animate-doodle-spin-glow"></div>
                     
-                    {/* Squiggly line */}
-                    <div className="absolute w-16 h-1 bg-[#9b87f5] top-1/4 -right-8 animate-pulse" 
-                      style={{clipPath: "path('M0,10 Q5,0 10,10 Q15,20 20,10 Q25,0 30,10 Q35,20 40,10')"}}></div>
+                    {/* Squiggly line - updated animation */}
+                    <div className="absolute w-16 h-1 bg-[#9b87f5] top-1/4 -right-8 animate-doodle-pulse-glow" 
+                         style={{clipPath: "path('M0,10 Q5,0 10,10 Q15,20 20,10 Q25,0 30,10 Q35,20 40,10')"}}></div>
                     
-                    {/* Star doodle */}
-                    <div className="absolute bottom-10 -left-8 animate-bounce-slow">
+                    {/* Star doodle - updated animation */}
+                    <div className="absolute bottom-10 -left-8 animate-doodle-bounce-glow">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2L14.4 9.6H22L15.8 14.4L18.2 22L12 17.2L5.8 22L8.2 14.4L2 9.6H9.6L12 2Z" fill="#9b87f5" />
                       </svg>
                     </div>
                     
-                    {/* Plus symbol */}
-                    <div className="absolute -bottom-6 right-10 animate-pulse">
+                    {/* Plus symbol - updated animation */}
+                    <div className="absolute -bottom-6 right-10 animate-doodle-pulse-glow">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 5V19M5 12H19" stroke="#9b87f5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
                     
-                    {/* Dots */}
-                    <div className="absolute top-10 -right-6 flex space-x-1 animate-bounce-slow">
+                    {/* Dots - updated animation */}
+                    <div className="absolute top-10 -right-6 flex space-x-1 animate-doodle-bounce-glow" style={{ animationDelay: '0.2s' }}>
                       <div className="w-2 h-2 bg-[#9b87f5] rounded-full"></div>
-                      <div className="w-2 h-2 bg-[#9b87f5] rounded-full"></div>
-                      <div className="w-2 h-2 bg-[#9b87f5] rounded-full"></div>
+                      <div className="w-2 h-2 bg-[#9b87f5] rounded-full" style={{ animationDelay: '0.1s' }}></div>
+                      <div className="w-2 h-2 bg-[#9b87f5] rounded-full" style={{ animationDelay: '0.2s' }}></div>
                     </div>
+
+                    {/* New Doodle: Floating Triangle (top-right of image) */}
+                    <svg width="20" height="20" viewBox="0 0 20 20" className="absolute top-[-20px] right-[-20px] animate-doodle-float-rotate opacity-70" style={{filter: "drop-shadow(0 0 3px #A78BFA)"}}>
+                      <polygon points="10,0 20,20 0,20" fill="#A78BFA" />
+                    </svg>
+
+                    {/* New Doodle: Pulsing Heart (mid-left of image) */}
+                    <svg width="24" height="24" viewBox="0 0 24 24" className="absolute top-1/2 left-[-35px] transform -translate-y-1/2 animate-doodle-pulse-glow opacity-80" style={{animationDuration: '1.5s', filter: "drop-shadow(0 0 4px #C4B5FD)"}}>
+                      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#C4B5FD"/>
+                    </svg>
+
+                    {/* New Doodle: Sparkles (bottom-right area of image) */}
+                    <div className="absolute bottom-[-15px] right-[-15px] w-10 h-10">
+                      <div className="w-1.5 h-1.5 bg-purple-300 rounded-full absolute top-0 left-2 animate-doodle-sparkle opacity-70" style={{animationDelay: '0s'}}></div>
+                      <div className="w-2 h-2 bg-purple-400 rounded-full absolute top-3 left-5 animate-doodle-sparkle opacity-80" style={{animationDelay: '0.3s'}}></div>
+                      <div className="w-1.5 h-1.5 bg-purple-300 rounded-full absolute top-5 left-1 animate-doodle-sparkle opacity-60" style={{animationDelay: '0.6s'}}></div>
+                    </div>
+
+                     {/* New Doodle: Small rotating square (bottom-left) */}
+                    <div className="absolute w-4 h-4 bg-[#a78bfa] bottom-[20px] left-[-20px] animate-doodle-spin-glow" style={{animationDuration: '7s', filter: "drop-shadow(0 0 4px #A78BFA)"}}></div>
+
+                    {/* New Doodle: Zigzag line (top-ish, from left) */}
+                    <svg width="40" height="20" className="absolute top-[15%] left-[-40px] animate-doodle-zigzag" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0 10 Q5 0, 10 10 T20 10 Q25 0, 30 10 T40 10" stroke="#C4B5FD" strokeWidth="2" fill="transparent" style={{filter: "drop-shadow(0 0 3px #C4B5FD)"}}/>
+                    </svg>
                   </div>
                 </div>
               </div>
