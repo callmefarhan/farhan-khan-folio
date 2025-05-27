@@ -1,0 +1,113 @@
+
+/* Global Styles for Vanilla Portfolio */
+
+:root {
+    --cursor-color: #9b87f5;
+    --background-color: #1A1F2C;
+    --text-color: #ffffff;
+    --font-primary: 'Space Grotesk', sans-serif;
+    --font-secondary: 'IBM Plex Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none; /* Custom cursor will be implemented */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--font-secondary);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    margin-bottom: 0.75em;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+a {
+    color: var(--cursor-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.portfolio-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.main-section {
+    padding: 4rem 1rem;
+    border-bottom: 1px solid #333a49; /* Light separator for sections */
+}
+
+.main-section:last-child {
+    border-bottom: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--cursor-color);
+    border-radius: 10px;
+}
+
+/* Custom Cursor Styles */
+.custom-cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--cursor-color);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.1s ease-in-out, height 0.1s ease-in-out;
+}
+
+.custom-cursor-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--cursor-color);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+}
+
+/* Basic responsive considerations */
+@media (max-width: 768px) {
+    .portfolio-container {
+        padding: 1rem;
+    }
+    .main-section {
+        padding: 2rem 0.5rem;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.75em; }
+}
+
