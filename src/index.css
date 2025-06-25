@@ -5,7 +5,7 @@
 
 @layer base {
   :root {
-    --cursor-color: #9b87f5;
+    --cursor-color: #000000;
   }
 
   * {
@@ -13,7 +13,7 @@
   }
 
   body {
-    @apply bg-[#1A1F2C] text-white font-mono overflow-x-hidden;
+    @apply bg-white text-black font-mono overflow-x-hidden;
     font-family: 'IBM Plex Mono', monospace;
   }
 
@@ -28,11 +28,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #1A1F2C;
+  background: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #9b87f5;
+  background: #000000;
   border-radius: 10px;
 }
 
@@ -66,7 +66,7 @@
 
 .hire-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(155, 135, 245, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .hire-btn:hover::before {
@@ -80,14 +80,14 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #9b87f5, #c4b5fd);
+  background: linear-gradient(45deg, #000000, #333333);
   transform: translateX(-100%);
   transition: transform 0.3s ease;
   z-index: -1;
 }
 
 .gradient-text {
-  background: linear-gradient(45deg, #9b87f5, #c4b5fd, #a78bfa);
+  background: linear-gradient(45deg, #000000, #333333, #666666);
   background-size: 200% 200%;
   background-clip: text;
   -webkit-background-clip: text;
@@ -110,7 +110,7 @@
   height: 2px;
   bottom: -2px;
   left: 0;
-  background: linear-gradient(to right, transparent, #9b87f5, transparent);
+  background: linear-gradient(to right, transparent, #000000, transparent);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -139,7 +139,7 @@
   height: 1px;
   bottom: -2px;
   left: 0;
-  background-color: #9b87f5;
+  background-color: #000000;
   transition: width 0.3s ease;
 }
 
@@ -158,7 +158,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, #9b87f5 10%, transparent 70%);
+  background: radial-gradient(circle, #000000 10%, transparent 70%);
   opacity: 0;
   top: 0;
   left: 0;
@@ -190,14 +190,14 @@
 @keyframes doodle-spin-glow {
   from {
     transform: rotate(0deg);
-    filter: drop-shadow(0 0 2px #9b87f5);
+    filter: drop-shadow(0 0 2px #000000);
   }
   50% {
-    filter: drop-shadow(0 0 8px #9b87f5) drop-shadow(0 0 3px #fff);
+    filter: drop-shadow(0 0 8px #000000) drop-shadow(0 0 3px #333);
   }
   to {
     transform: rotate(360deg);
-    filter: drop-shadow(0 0 2px #9b87f5);
+    filter: drop-shadow(0 0 2px #000000);
   }
 }
 
@@ -205,11 +205,11 @@
 @keyframes doodle-bounce-glow {
   0%, 100% {
     transform: translateY(0);
-    filter: drop-shadow(0 0 2px #9b87f5);
+    filter: drop-shadow(0 0 2px #000000);
   }
   50% {
     transform: translateY(-8px); /* Increased bounce */
-    filter: drop-shadow(0 0 10px #9b87f5) drop-shadow(0 0 4px #fff); /* Enhanced glow */
+    filter: drop-shadow(0 0 10px #000000) drop-shadow(0 0 4px #333); /* Enhanced glow */
   }
 }
 
@@ -218,30 +218,30 @@
   0%, 100% {
     transform: scale(1);
     opacity: 0.7;
-    filter: drop-shadow(0 0 3px #9b87f5);
+    filter: drop-shadow(0 0 3px #000000);
   }
   50% {
     transform: scale(1.1);
     opacity: 1;
-    filter: drop-shadow(0 0 10px #9b87f5) drop-shadow(0 0 5px #fff);
+    filter: drop-shadow(0 0 10px #000000) drop-shadow(0 0 5px #333);
   }
 }
 
 /* New doodle animations */
 @keyframes doodle-float-rotate {
   0% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
-  50% { transform: translateY(-10px) rotate(180deg); opacity: 1; filter: drop-shadow(0 0 8px #A78BFA); }
+  50% { transform: translateY(-10px) rotate(180deg); opacity: 1; filter: drop-shadow(0 0 8px #333); }
   100% { transform: translateY(0px) rotate(360deg); opacity: 0.6; }
 }
 
 @keyframes doodle-sparkle {
   0%, 100% { opacity: 0.2; transform: scale(0.5); }
-  50% { opacity: 1; transform: scale(1.2); filter: drop-shadow(0 0 5px #c4b5fd) drop-shadow(0 0 2px #fff); }
+  50% { opacity: 1; transform: scale(1.2); filter: drop-shadow(0 0 5px #666) drop-shadow(0 0 2px #333); }
 }
 
 @keyframes doodle-zigzag {
   0% { transform: translateX(0px); opacity: 0.5; }
-  50% { transform: translateX(10px) translateY(-5px); opacity: 1; filter: drop-shadow(0 0 6px #C4B5FD); }
+  50% { transform: translateX(10px) translateY(-5px); opacity: 1; filter: drop-shadow(0 0 6px #666); }
   100% { transform: translateX(0px); opacity: 0.5; }
 }
 
@@ -329,7 +329,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent 0%, #1A1F2C 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, #ffffff 50%, transparent 100%);
   transform: translateX(-100%);
   animation: splitReveal 2s ease-out forwards;
   z-index: 1;
@@ -342,7 +342,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, #9b87f5, #c4b5fd);
+  background: linear-gradient(90deg, #000000, #333333);
   transform: scaleX(0);
   transition: transform 0.6s ease;
   transform-origin: left;
