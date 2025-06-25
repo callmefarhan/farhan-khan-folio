@@ -101,22 +101,24 @@ const Index = () => {
           <main className="pt-32 px-12 max-w-7xl mx-auto">
             <section id="top" className="min-h-screen flex items-center gap-12">
               <div className="flex-1">
-                <h1 className="blur-reveal text-7xl font-sans font-bold mb-6">
+                <h1 className="blur-reveal text-7xl font-serif font-bold mb-6 split-text">
                   Farhan Khan
                 </h1>
                 <div className="fade-in text-[#8E9196] text-xl mb-8 font-mono">
-                  Designer / Learner / Student
+                  Graphics Designer / UI & UX
                 </div>
                 <p className="fade-in max-w-xl text-[#8E9196] mb-12">
                   Creating minimal and impactful digital experiences through thoughtful design
                   and innovative solutions.
                 </p>
                 <div className="fade-in">
-                  <button className="border border-[#9b87f5] px-8 py-3 text-[#9b87f5] hover:bg-[#9b87f5] hover:text-white transition-colors">
-                    View Portfolio
+                  <button className="hire-btn border border-[#9b87f5] px-8 py-3 hover:bg-[#9b87f5] transition-all duration-300 relative overflow-hidden">
+                    <span className="gradient-text font-semibold">Hire me!</span>
                   </button>
                 </div>
               </div>
+
+              {/* Profile Image Section */}
               <div className="flex-1 flex justify-center items-center">
                 <div 
                   className="profile-image-container relative"
@@ -196,7 +198,7 @@ const Index = () => {
 
             {/* About Section */}
             <section id="about" className="min-h-screen reveal-section py-24">
-              <h2 className="text-4xl font-sans font-bold mb-12 split-text">About Me</h2>
+              <h2 className="text-4xl font-serif font-bold mb-12 split-text">About Me</h2>
               <div className="space-y-6 text-[#8E9196]">
                 <p className="text-lg leading-relaxed reveal-text">
                   I'm someone who believes that meaningful tech starts with purpose.
@@ -216,7 +218,7 @@ const Index = () => {
 
             {/* Work Section */}
             <section id="work" className="min-h-screen reveal-section py-24">
-              <h2 className="text-4xl font-sans font-bold mb-12 split-text">Work</h2>
+              <h2 className="text-4xl font-serif font-bold mb-12 split-text">Work</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {projects.map((project, index) => (
                   <a 
@@ -227,7 +229,7 @@ const Index = () => {
                     className="block" // Added block to make the whole card clickable, or you can wrap just the title.
                   >
                     <Card className="reveal-text group p-8 border border-[#9b87f5]/20 hover:border-[#9b87f5] bg-transparent transition-all duration-300 h-full">
-                      <h3 className="text-2xl font-sans mb-4 text-[#9b87f5]">{project.title}</h3>
+                      <h3 className="text-2xl font-serif mb-4 text-[#9b87f5]">{project.title}</h3>
                       <p className="text-[#8E9196] mb-4">{project.description}</p>
                       <p className="text-sm text-[#8E9196]/70">{project.tech}</p>
                     </Card>
@@ -238,7 +240,7 @@ const Index = () => {
 
             {/* Me Outside Tech Section */}
             <section id="outside-tech" className="min-h-screen reveal-section py-24">
-              <h2 className="text-4xl font-sans font-bold mb-12 split-text">Me, Outside of Tech</h2>
+              <h2 className="text-4xl font-serif font-bold mb-12 split-text">Me, Outside of Tech</h2>
               <div className="space-y-8 text-[#8E9196]">
                 <div className="reveal-text flex items-start gap-6">
                   <span className="text-3xl">🎬</span>
@@ -263,7 +265,7 @@ const Index = () => {
 
             {/* Contact Section */}
             <section id="contact" className="min-h-screen reveal-section py-24">
-              <h2 className="text-4xl font-sans font-bold mb-12 split-text">Let's Connect</h2>
+              <h2 className="text-4xl font-serif font-bold mb-12 split-text">Let's Connect</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <a 
                   href="https://www.linkedin.com/in/farhan-khan-00817a296/" 

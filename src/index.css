@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,7 +18,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Playfair Display', serif;
   }
 }
 
@@ -55,6 +56,50 @@
   position: fixed;
   pointer-events: none;
   z-index: 999;
+}
+
+/* Hire Me Button Styles */
+.hire-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.hire-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(155, 135, 245, 0.3);
+}
+
+.hire-btn:hover::before {
+  transform: translateX(0);
+}
+
+.hire-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #9b87f5, #c4b5fd);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, #9b87f5, #c4b5fd, #a78bfa);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease infinite;
+  font-weight: 600;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Shining Text Effect */
@@ -274,6 +319,20 @@
   transition: all 0.6s ease;
   position: relative;
   display: inline-block;
+  overflow: hidden;
+}
+
+.split-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, #1A1F2C 50%, transparent 100%);
+  transform: translateX(-100%);
+  animation: splitReveal 2s ease-out forwards;
+  z-index: 1;
 }
 
 .split-text::after {
@@ -283,10 +342,19 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background: #9b87f5;
+  background: linear-gradient(90deg, #9b87f5, #c4b5fd);
   transform: scaleX(0);
   transition: transform 0.6s ease;
   transform-origin: left;
+}
+
+@keyframes splitReveal {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .reveal-section.reveal .split-text {
