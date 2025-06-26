@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <nav className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50">
       <div 
-        className={`relative transition-all duration-300 ease-in-out border-2 border-white rounded-full bg-transparent backdrop-blur-sm ${
+        className={`relative transition-all duration-300 ease-in-out border-2 border-black rounded-full bg-transparent backdrop-blur-sm ${
           isHovered ? 'px-8 py-3' : 'px-6 py-3'
         }`}
         onMouseEnter={() => setIsHovered(true)}
@@ -23,7 +23,7 @@ const Navbar = () => {
         {/* FK. Logo - always visible */}
         <button 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
-          className="text-white font-sans hover:text-[#9b87f5] transition-colors duration-300 text-lg font-medium"
+          className="text-black font-sans hover:text-gray-600 transition-colors duration-300 text-lg font-medium"
         >
           FK.
         </button>
@@ -36,7 +36,7 @@ const Navbar = () => {
             <button 
               key={item}
               onClick={() => scrollToSection(item)} 
-              className="text-sm text-white hover:text-[#9b87f5] transition-colors duration-300 whitespace-nowrap"
+              className="text-sm text-black hover:text-gray-600 transition-colors duration-300 whitespace-nowrap"
             >
               {item.toUpperCase().replace('-', ' ')}
             </button>

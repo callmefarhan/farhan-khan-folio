@@ -64,16 +64,19 @@ const Index = () => {
   ];
 
   useEffect(() => {
-    // Infinite scroll functionality
+    // Infinite scroll functionality - modified to continue to hero section
     const handleScroll = () => {
       const scrollHeight = document.documentElement.scrollHeight;
       const scrollTop = document.documentElement.scrollTop;
       const clientHeight = document.documentElement.clientHeight;
       
-      // If user scrolled to the bottom, smoothly scroll to top
+      // If user scrolled to the bottom, smoothly scroll to hero section
       if (scrollTop + clientHeight >= scrollHeight - 50) {
         setTimeout(() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          const heroSection = document.getElementById('top');
+          if (heroSection) {
+            heroSection.scrollIntoView({ behavior: 'smooth' });
+          }
         }, 100);
       }
     };
