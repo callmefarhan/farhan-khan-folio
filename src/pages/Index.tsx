@@ -4,6 +4,7 @@ import CustomCursor from '../components/CustomCursor';
 import Navbar from '../components/Navbar';
 import LoadingScreen from '../components/LoadingScreen';
 import { Card } from '@/components/ui/card';
+import { Linkedin, Github, Twitter, Instagram } from 'lucide-react';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,7 +35,49 @@ const Index = () => {
     }
   ];
 
+  // Define social links
+  const socialLinks = [
+    {
+      name: "LinkedIn",
+      icon: <Linkedin className="h-8 w-8" />,
+      link: "https://www.linkedin.com/in/farhan-khan-00817a296/",
+      color: "hover:text-blue-600"
+    },
+    {
+      name: "GitHub",
+      icon: <Github className="h-8 w-8" />,
+      link: "https://github.com/callmefarhan",
+      color: "hover:text-gray-600"
+    },
+    {
+      name: "Twitter",
+      icon: <Twitter className="h-8 w-8" />,
+      link: "https://x.com/FarhanK42363",
+      color: "hover:text-blue-400"
+    },
+    {
+      name: "Instagram",
+      icon: <Instagram className="h-8 w-8" />,
+      link: "https://www.instagram.com/iiamfarhankhann/?next=%2F",
+      color: "hover:text-pink-500"
+    }
+  ];
+
   useEffect(() => {
+    // Infinite scroll functionality
+    const handleScroll = () => {
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollTop = document.documentElement.scrollTop;
+      const clientHeight = document.documentElement.clientHeight;
+      
+      // If user scrolled to the bottom, smoothly scroll to top
+      if (scrollTop + clientHeight >= scrollHeight - 50) {
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 100);
+      }
+    };
+
     // Make sure all sections are visible on load
     const revealSections = () => {
       const sections = document.querySelectorAll('.reveal-section');
@@ -77,6 +120,7 @@ const Index = () => {
     });
 
     document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('scroll', handleScroll);
     
     // If loading is complete, reveal all sections
     if (!isLoading) {
@@ -86,6 +130,7 @@ const Index = () => {
     return () => {
       observer.disconnect();
       document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('scroll', handleScroll);
     };
   }, [isLoading]);
 
@@ -94,7 +139,7 @@ const Index = () => {
       {isLoading ? (
         <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />
       ) : (
-        <div className="min-h-screen bg-white text-black">
+        <div className="min-h-screen bg-white text-black scroll-container">
           <CustomCursor />
           <Navbar />
           
@@ -113,8 +158,8 @@ const Index = () => {
                   and innovative solutions.
                 </p>
                 <div className="fade-in">
-                  <button className="hire-btn border border-black px-8 py-3 hover:bg-black hover:text-white transition-all duration-300 relative overflow-hidden">
-                    <span className="gradient-text font-semibold">Hire me!</span>
+                  <button className="hire-btn px-8 py-3 relative overflow-hidden">
+                    <span className="hire-btn-text gradient-text font-semibold">Hire me!</span>
                   </button>
                 </div>
               </div>
@@ -229,7 +274,7 @@ const Index = () => {
                     rel="noopener noreferrer"
                     className="block"
                   >
-                    <Card className="reveal-text group p-8 border border-black/20 hover:border-black bg-transparent transition-all duration-300 h-full">
+                    <Card className="reveal-text group p-8 border border-gray-200 hover:border-black bg-transparent transition-all duration-300 h-full">
                       <h3 className="text-2xl font-serif mb-4 text-black">{project.title}</h3>
                       <p className="text-gray-600 mb-4">{project.description}</p>
                       <p className="text-sm text-gray-600/70">{project.tech}</p>
@@ -264,46 +309,23 @@ const Index = () => {
               </div>
             </section>
 
-            {/* Contact Section */}
+            {/* Contact Section with vertical icons */}
             <section id="contact" className="min-h-screen reveal-section py-24">
               <h2 className="text-4xl font-serif font-bold mb-12 split-text">Let's Connect</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <a 
-                  href="https://www.linkedin.com/in/farhan-khan-00817a296/" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="reveal-text group p-8 border border-black hover:bg-black hover:text-white transition-all duration-300"
-                >
-                  <span className="text-2xl block mb-2">LinkedIn</span>
-                  <span className="text-gray-600 group-hover:text-white transition-colors">Let's connect professionally</span>
-                </a>
-                <a 
-                  href="https://github.com/callmefarhan" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="reveal-text group p-8 border border-black hover:bg-black hover:text-white transition-all duration-300"
-                >
-                  <span className="text-2xl block mb-2">GitHub</span>
-                  <span className="text-gray-600 group-hover:text-white transition-colors">Check out my code</span>
-                </a>
-                <a 
-                  href="https://x.com/FarhanK42363" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="reveal-text group p-8 border border-black hover:bg-black hover:text-white transition-all duration-300"
-                >
-                  <span className="text-2xl block mb-2">Twitter</span>
-                  <span className="text-gray-600 group-hover:text-white transition-colors">Follow my thoughts</span>
-                </a>
-                <a 
-                  href="https://www.instagram.com/iiamfarhankhann/?next=%2F" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="reveal-text group p-8 border border-black hover:bg-black hover:text-white transition-all duration-300"
-                >
-                  <span className="text-2xl block mb-2">Instagram</span>
-                  <span className="text-gray-600 group-hover:text-white transition-colors">See my visual side</span>
-                </a>
+              <div className="flex justify-center items-center space-x-12">
+                {socialLinks.map((social, index) => (
+                  <a 
+                    key={social.name}
+                    href={social.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className={`reveal-text social-icon flex flex-col items-center space-y-2 text-black ${social.color} transition-all duration-300`}
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    {social.icon}
+                    <span className="text-sm font-mono">{social.name}</span>
+                  </a>
+                ))}
               </div>
             </section>
           </main>
