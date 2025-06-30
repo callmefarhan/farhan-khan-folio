@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import CustomCursor from '../components/CustomCursor';
 import Navbar from '../components/Navbar';
@@ -64,23 +63,6 @@ const Index = () => {
   ];
 
   useEffect(() => {
-    // Infinite scroll functionality - modified to continue to hero section
-    const handleScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight;
-      const scrollTop = document.documentElement.scrollTop;
-      const clientHeight = document.documentElement.clientHeight;
-      
-      // If user scrolled to the bottom, smoothly scroll to hero section
-      if (scrollTop + clientHeight >= scrollHeight - 50) {
-        setTimeout(() => {
-          const heroSection = document.getElementById('top');
-          if (heroSection) {
-            heroSection.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 100);
-      }
-    };
-
     // Make sure all sections are visible on load
     const revealSections = () => {
       const sections = document.querySelectorAll('.reveal-section');
@@ -123,7 +105,6 @@ const Index = () => {
     });
 
     document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('scroll', handleScroll);
     
     // If loading is complete, reveal all sections
     if (!isLoading) {
@@ -133,7 +114,6 @@ const Index = () => {
     return () => {
       observer.disconnect();
       document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('scroll', handleScroll);
     };
   }, [isLoading]);
 
