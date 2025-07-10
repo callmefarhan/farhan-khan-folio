@@ -18,7 +18,7 @@ const Index = () => {
       tech: "React, TypeScript, Tailwind"
     },
     {
-      title: "Athlete Performance Tracker",
+      title: "Athlete Performance Tracker", 
       description: "Real-time performance analytics for athletes",
       tech: "React, Firebase, D3.js"
     },
@@ -171,7 +171,7 @@ const Index = () => {
                     {/* Circle doodle */}
                     <div 
                       className={`absolute w-10 h-10 border-2 border-black rounded-full transition-all duration-600 ${
-                        isHovering ? 'animate-doodle-slide-out' : 'animate-doodle-slide-back'
+                        isHovering ? 'animate-doodle-slide-out' : ''
                       }`}
                       style={{ 
                         '--slide-x': '-6rem', 
@@ -184,7 +184,7 @@ const Index = () => {
                     {/* Squiggly line */}
                     <div 
                       className={`absolute w-16 h-1 bg-black transition-all duration-700 ${
-                        isHovering ? 'animate-doodle-slide-out' : 'animate-doodle-slide-back'
+                        isHovering ? 'animate-doodle-slide-out' : ''
                       }`}
                       style={{ 
                         '--slide-x': '10rem', 
@@ -199,7 +199,7 @@ const Index = () => {
                     {/* Star doodle */}
                     <div 
                       className={`absolute transition-all duration-600 ${
-                        isHovering ? 'animate-doodle-bounce-slide' : 'animate-doodle-bounce-slide-back'
+                        isHovering ? 'animate-doodle-bounce-slide' : ''
                       }`}
                       style={{ 
                         '--slide-x': '-8rem', 
@@ -217,7 +217,7 @@ const Index = () => {
                     {/* Plus symbol */}
                     <div 
                       className={`absolute transition-all duration-600 ${
-                        isHovering ? 'animate-doodle-slide-out' : 'animate-doodle-slide-back'
+                        isHovering ? 'animate-doodle-slide-out' : ''
                       }`}
                       style={{ 
                         '--slide-x': '8rem', 
@@ -235,7 +235,7 @@ const Index = () => {
                     {/* Dots */}
                     <div 
                       className={`absolute flex space-x-1 transition-all duration-700 ${
-                        isHovering ? 'animate-doodle-bounce-slide' : 'animate-doodle-bounce-slide-back'
+                        isHovering ? 'animate-doodle-bounce-slide' : ''
                       }`}
                       style={{ 
                         '--slide-x': '6rem', 
@@ -256,7 +256,7 @@ const Index = () => {
                       height="20" 
                       viewBox="0 0 20 20" 
                       className={`absolute transition-all duration-800 ${
-                        isHovering ? 'animate-doodle-spin-slide' : 'animate-doodle-spin-slide-back'
+                        isHovering ? 'animate-doodle-spin-slide' : ''
                       }`}
                       style={{ 
                         '--slide-x': '4rem', 
@@ -275,7 +275,7 @@ const Index = () => {
                       height="24" 
                       viewBox="0 0 24 24" 
                       className={`absolute transition-all duration-600 ${
-                        isHovering ? 'animate-doodle-slide-out' : 'animate-doodle-slide-back'
+                        isHovering ? 'animate-doodle-slide-out' : ''
                       }`}
                       style={{ 
                         '--slide-x': '-10rem', 
@@ -291,7 +291,7 @@ const Index = () => {
                     {/* Sparkles */}
                     <div 
                       className={`absolute w-10 h-10 transition-all duration-600 ${
-                        isHovering ? 'animate-doodle-slide-out' : 'animate-doodle-slide-back'
+                        isHovering ? 'animate-doodle-slide-out' : ''
                       }`}
                       style={{ 
                         '--slide-x': '6rem', 
@@ -309,7 +309,7 @@ const Index = () => {
                     {/* Small rotating square */}
                     <div 
                       className={`absolute w-4 h-4 bg-black transition-all duration-700 ${
-                        isHovering ? 'animate-doodle-spin-slide' : 'animate-doodle-spin-slide-back'
+                        isHovering ? 'animate-doodle-spin-slide' : ''
                       }`}
                       style={{ 
                         '--slide-x': '-6rem', 
@@ -325,7 +325,7 @@ const Index = () => {
                       width="40" 
                       height="20" 
                       className={`absolute transition-all duration-800 ${
-                        isHovering ? 'animate-doodle-slide-out' : 'animate-doodle-slide-back'
+                        isHovering ? 'animate-doodle-slide-out' : ''
                       }`}
                       xmlns="http://www.w3.org/2000/svg"
                       style={{ 
