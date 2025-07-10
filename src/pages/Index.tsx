@@ -1,39 +1,14 @@
+
 import { useEffect, useState } from 'react';
 import CustomCursor from '../components/CustomCursor';
 import Navbar from '../components/Navbar';
 import LoadingScreen from '../components/LoadingScreen';
 import { Card } from '@/components/ui/card';
-import { Linkedin, Github, Twitter, Instagram, Upload, X } from 'lucide-react';
+import { Linkedin, Github, Twitter, Instagram } from 'lucide-react';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
-  const [uploadedImages, setUploadedImages] = useState<string[]>([]);
-
-  // Define the projects array
-  const projects = [
-    {
-      title: "Career Counseling Platform",
-      description: "A platform helping students find their career path",
-      tech: "React, TypeScript, Tailwind"
-    },
-    {
-      title: "Athlete Performance Tracker", 
-      description: "Real-time performance analytics for athletes",
-      tech: "React, Firebase, D3.js"
-    },
-    {
-      title: "Social Media Dashboard",
-      description: "Analytics and management platform",
-      tech: "Next.js, Supabase, Tailwind"
-    },
-    {
-      title: "AI Learning Assistant",
-      description: "Personalized learning companion",
-      tech: "React, OpenAI, Node.js"
-    }
-  ];
 
   // Define social links
   const socialLinks = [
@@ -63,24 +38,57 @@ const Index = () => {
     }
   ];
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (files) {
-      Array.from(files).forEach(file => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          if (e.target?.result) {
-            setUploadedImages(prev => [...prev, e.target!.result as string]);
-          }
-        };
-        reader.readAsDataURL(file);
-      });
+  // Graphic design works for bento grid
+  const designWorks = [
+    {
+      title: "Sleepy Zoro Character Design",
+      category: "Character Design",
+      description: "Anime-inspired character illustration with vibrant colors",
+      image: "/lovable-uploads/bc9fab5d-225f-4a18-8484-84418dbb2928.png",
+      size: "large", // takes more space
+      bgColor: "bg-pink-50"
+    },
+    {
+      title: "Coffee & Camera Setup",
+      category: "Product Photography",
+      description: "Minimalist black and white composition",
+      image: "/lovable-uploads/bc9fab5d-225f-4a18-8484-84418dbb2928.png",
+      size: "medium",
+      bgColor: "bg-gray-50"
+    },
+    {
+      title: "Typography Design",
+      category: "Brand Design",
+      description: "Modern typography with emotional messaging",
+      image: "/lovable-uploads/bc9fab5d-225f-4a18-8484-84418dbb2928.png",
+      size: "medium",
+      bgColor: "bg-red-50"
+    },
+    {
+      title: "Synergy Brand Design",
+      category: "UI/UX Design",
+      description: "Clean interface design with call-to-action",
+      image: "/lovable-uploads/bc9fab5d-225f-4a18-8484-84418dbb2928.png",
+      size: "large",
+      bgColor: "bg-blue-50"
+    },
+    {
+      title: "Ambient Car Wallpaper",
+      category: "Digital Art",
+      description: "Atmospheric landscape with dreamy colors",
+      image: "/lovable-uploads/bc9fab5d-225f-4a18-8484-84418dbb2928.png",
+      size: "small",
+      bgColor: "bg-purple-50"
+    },
+    {
+      title: "Japanese Character Art",
+      category: "Illustration",
+      description: "Traditional Japanese art style with modern twist",
+      image: "/lovable-uploads/bc9fab5d-225f-4a18-8484-84418dbb2928.png",
+      size: "medium",
+      bgColor: "bg-orange-50"
     }
-  };
-
-  const removeImage = (index: number) => {
-    setUploadedImages(prev => prev.filter((_, i) => i !== index));
-  };
+  ];
 
   useEffect(() => {
     // Make sure all sections are visible on load
@@ -151,7 +159,7 @@ const Index = () => {
             <section id="top" className="min-h-screen flex items-center gap-12 relative">
               {/* Background grid for hero section */}
               <div 
-                className="absolute inset-0 opacity-30 pointer-events-none"
+                className="absolute inset-0 opacity-20 pointer-events-none"
                 style={{
                   backgroundImage: 
                     'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
@@ -178,320 +186,178 @@ const Index = () => {
                 </div>
               </div>
 
-              {/* Profile Image Section with doodles behind */}
+              {/* Profile Image Section - simplified without doodles */}
               <div className="flex-1 flex justify-center items-center relative z-10">
                 <div 
                   className="profile-image-container relative"
                   style={{ transform: 'translateY(-2rem)' }}
-                  onMouseEnter={() => setIsHovering(true)}
-                  onMouseLeave={() => setIsHovering(false)}
                 >
-                  {/* Animated doodles positioned behind the profile image */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none z-0">
-                    {/* Circle doodle */}
-                    <div 
-                      className={`absolute w-10 h-10 border-2 border-black rounded-full transition-all duration-600 ${
-                        isHovering ? 'animate-doodle-slide-out' : ''
-                      }`}
-                      style={{ 
-                        '--slide-x': '-6rem', 
-                        '--slide-y': '-6rem',
-                        transform: 'translate(0, 0) scale(0.5)',
-                        opacity: 0
-                      } as React.CSSProperties}
-                    ></div>
-                    
-                    {/* Squiggly line */}
-                    <div 
-                      className={`absolute w-16 h-1 bg-black transition-all duration-700 ${
-                        isHovering ? 'animate-doodle-slide-out' : ''
-                      }`}
-                      style={{ 
-                        '--slide-x': '10rem', 
-                        '--slide-y': '-4rem',
-                        clipPath: "path('M0,10 Q5,0 10,10 Q15,20 20,10 Q25,0 30,10 Q35,20 40,10')",
-                        transform: 'translate(0, 0) scale(0.5)',
-                        opacity: 0,
-                        animationDelay: '0.1s'
-                      } as React.CSSProperties}
-                    ></div>
-                    
-                    {/* Star doodle */}
-                    <div 
-                      className={`absolute transition-all duration-600 ${
-                        isHovering ? 'animate-doodle-bounce-slide' : ''
-                      }`}
-                      style={{ 
-                        '--slide-x': '-8rem', 
-                        '--slide-y': '8rem',
-                        transform: 'translate(0, 0) scale(0.5)',
-                        opacity: 0,
-                        animationDelay: '0.2s'
-                      } as React.CSSProperties}
-                    >
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2L14.4 9.6H22L15.8 14.4L18.2 22L12 17.2L5.8 22L8.2 14.4L2 9.6H9.6L12 2Z" fill="#000000" />
-                      </svg>
-                    </div>
-                    
-                    {/* Plus symbol */}
-                    <div 
-                      className={`absolute transition-all duration-600 ${
-                        isHovering ? 'animate-doodle-slide-out' : ''
-                      }`}
-                      style={{ 
-                        '--slide-x': '8rem', 
-                        '--slide-y': '10rem',
-                        transform: 'translate(0, 0) scale(0.5)',
-                        opacity: 0,
-                        animationDelay: '0.15s'
-                      } as React.CSSProperties}
-                    >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 5V19M5 12H19" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                    
-                    {/* Dots */}
-                    <div 
-                      className={`absolute flex space-x-1 transition-all duration-700 ${
-                        isHovering ? 'animate-doodle-bounce-slide' : ''
-                      }`}
-                      style={{ 
-                        '--slide-x': '6rem', 
-                        '--slide-y': '-8rem',
-                        transform: 'translate(0, 0) scale(0.5)',
-                        opacity: 0,
-                        animationDelay: '0.25s'
-                      } as React.CSSProperties}
-                    >
-                      <div className="w-2 h-2 bg-black rounded-full"></div>
-                      <div className="w-2 h-2 bg-black rounded-full"></div>
-                      <div className="w-2 h-2 bg-black rounded-full"></div>
-                    </div>
-
-                    {/* Floating Triangle */}
-                    <svg 
-                      width="20" 
-                      height="20" 
-                      viewBox="0 0 20 20" 
-                      className={`absolute transition-all duration-800 ${
-                        isHovering ? 'animate-doodle-spin-slide' : ''
-                      }`}
-                      style={{ 
-                        '--slide-x': '4rem', 
-                        '--slide-y': '-10rem',
-                        transform: 'translate(0, 0) scale(0.5)',
-                        opacity: 0,
-                        animationDelay: '0.3s'
-                      } as React.CSSProperties}
-                    >
-                      <polygon points="10,0 20,20 0,20" fill="#000000" />
-                    </svg>
-
-                    {/* Pulsing Heart */}
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 24" 
-                      className={`absolute transition-all duration-600 ${
-                        isHovering ? 'animate-doodle-slide-out' : ''
-                      }`}
-                      style={{ 
-                        '--slide-x': '-10rem', 
-                        '--slide-y': '2rem',
-                        transform: 'translate(0, 0) scale(0.5)',
-                        opacity: 0,
-                        animationDelay: '0.35s'
-                      } as React.CSSProperties}
-                    >
-                      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#000000"/>
-                    </svg>
-
-                    {/* Sparkles */}
-                    <div 
-                      className={`absolute w-10 h-10 transition-all duration-600 ${
-                        isHovering ? 'animate-doodle-slide-out' : ''
-                      }`}
-                      style={{ 
-                        '--slide-x': '6rem', 
-                        '--slide-y': '6rem',
-                        transform: 'translate(0, 0) scale(0.5)',
-                        opacity: 0,
-                        animationDelay: '0.4s'
-                      } as React.CSSProperties}
-                    >
-                      <div className="w-1.5 h-1.5 bg-black rounded-full absolute top-0 left-2"></div>
-                      <div className="w-2 h-2 bg-black rounded-full absolute top-3 left-5"></div>
-                      <div className="w-1.5 h-1.5 bg-black rounded-full absolute top-5 left-1"></div>
-                    </div>
-
-                    {/* Small rotating square */}
-                    <div 
-                      className={`absolute w-4 h-4 bg-black transition-all duration-700 ${
-                        isHovering ? 'animate-doodle-spin-slide' : ''
-                      }`}
-                      style={{ 
-                        '--slide-x': '-6rem', 
-                        '--slide-y': '6rem',
-                        transform: 'translate(0, 0) scale(0.5)',
-                        opacity: 0,
-                        animationDelay: '0.45s'
-                      } as React.CSSProperties}
-                    ></div>
-
-                    {/* Zigzag line */}
-                    <svg 
-                      width="40" 
-                      height="20" 
-                      className={`absolute transition-all duration-800 ${
-                        isHovering ? 'animate-doodle-slide-out' : ''
-                      }`}
-                      xmlns="http://www.w3.org/2000/svg"
-                      style={{ 
-                        '--slide-x': '-8rem', 
-                        '--slide-y': '-2rem',
-                        transform: 'translate(0, 0) scale(0.5)',
-                        opacity: 0,
-                        animationDelay: '0.5s'
-                      } as React.CSSProperties}
-                    >
-                      <path d="M0 10 Q5 0, 10 10 T20 10 Q25 0, 30 10 T40 10" stroke="#000000" strokeWidth="2" fill="transparent"/>
-                    </svg>
-                  </div>
-
-                  {/* Main profile image */}
+                  {/* Main profile image with drop shadow */}
                   <div 
-                    className="profile-image w-[28rem] h-[28rem] rounded-full overflow-hidden transition-transform duration-300 ease-out hover:scale-105 relative z-20"
+                    className="profile-image w-[28rem] h-[28rem] rounded-full overflow-hidden transition-transform duration-300 ease-out hover:scale-105 relative z-20 shadow-2xl"
                     style={{ 
                       transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
                       backgroundImage: 'url("/lovable-uploads/0b94a337-800e-46de-a5cf-0d98363f91d5.png")',
                       backgroundSize: 'cover',
-                      backgroundPosition: 'center'
+                      backgroundPosition: 'center',
+                      filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15))'
                     }}
                   />
                 </div>
               </div>
             </section>
 
-            {/* About Section */}
-            <section id="about" className="min-h-screen reveal-section py-24">
-              <h2 className="text-4xl font-serif font-bold mb-12 split-text">About Me</h2>
-              <div className="space-y-6 text-gray-600">
-                <p className="text-lg leading-relaxed reveal-text">
-                  I'm someone who believes that meaningful tech starts with purpose.
-                  Whether it's crafting a web app, optimizing data flow, or reimagining everyday experiences with AI, 
-                  I enjoy turning complex ideas into simple, effective solutions.
-                </p>
-                <p className="text-lg leading-relaxed reveal-text">
-                  I've worked on projects ranging from career counseling platforms to athlete performance tracking apps — 
-                  all with a deep interest in how users interact with technology.
-                </p>
-                <p className="text-lg leading-relaxed reveal-text">
-                  I love learning new tech stacks, experimenting with design, and occasionally diving into the world of 
-                  social media, networking, and storytelling.
-                </p>
+            {/* About Section with background grid */}
+            <section id="about" className="min-h-screen reveal-section py-24 relative">
+              {/* Background grid */}
+              <div 
+                className="absolute inset-0 opacity-20 pointer-events-none"
+                style={{
+                  backgroundImage: 
+                    'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
+                  backgroundSize: '40px 40px',
+                  backgroundPosition: '0 0, 0 0'
+                }}
+              />
+              <div className="relative z-10">
+                <h2 className="text-4xl font-serif font-bold mb-12 split-text">About Me</h2>
+                <div className="space-y-6 text-gray-600">
+                  <p className="text-lg leading-relaxed reveal-text">
+                    I'm someone who believes that meaningful tech starts with purpose.
+                    Whether it's crafting a web app, optimizing data flow, or reimagining everyday experiences with AI, 
+                    I enjoy turning complex ideas into simple, effective solutions.
+                  </p>
+                  <p className="text-lg leading-relaxed reveal-text">
+                    I've worked on projects ranging from career counseling platforms to athlete performance tracking apps — 
+                    all with a deep interest in how users interact with technology.
+                  </p>
+                  <p className="text-lg leading-relaxed reveal-text">
+                    I love learning new tech stacks, experimenting with design, and occasionally diving into the world of 
+                    social media, networking, and storytelling.
+                  </p>
+                </div>
               </div>
             </section>
 
-            {/* Work Section - Replace with Interactive Gallery */}
-            <section id="work" className="min-h-screen reveal-section py-24">
-              <h2 className="text-4xl font-serif font-bold mb-12 split-text">My Work</h2>
-              
-              {/* Upload Area */}
-              <div className="mb-12">
-                <label htmlFor="image-upload" className="block">
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-gray-400 transition-colors cursor-pointer">
-                    <Upload className="mx-auto mb-4 h-12 w-12 text-gray-400" />
-                    <p className="text-lg font-medium text-gray-700 mb-2">Upload your work</p>
-                    <p className="text-gray-500">Drag and drop images or click to select</p>
-                  </div>
-                </label>
-                <input
-                  id="image-upload"
-                  type="file"
-                  multiple
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  className="hidden"
-                />
-              </div>
-
-              {/* Gallery Grid */}
-              {uploadedImages.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {uploadedImages.map((image, index) => (
-                    <div key={index} className="reveal-text group relative">
-                      <Card className="overflow-hidden border border-gray-200 hover:border-black transition-all duration-300">
-                        <div className="relative">
-                          <img 
-                            src={image} 
-                            alt={`Uploaded work ${index + 1}`}
-                            className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-                          />
-                          <button
-                            onClick={() => removeImage(index)}
-                            className="absolute top-2 right-2 bg-black/50 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                          >
-                            <X className="h-4 w-4" />
-                          </button>
+            {/* Work Section - Bento Grid with background grid */}
+            <section id="work" className="min-h-screen reveal-section py-24 relative">
+              {/* Background grid */}
+              <div 
+                className="absolute inset-0 opacity-20 pointer-events-none"
+                style={{
+                  backgroundImage: 
+                    'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
+                  backgroundSize: '40px 40px',
+                  backgroundPosition: '0 0, 0 0'
+                }}
+              />
+              <div className="relative z-10">
+                <h2 className="text-4xl font-serif font-bold mb-12 split-text">My Work</h2>
+                
+                {/* Bento Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-fr">
+                  {designWorks.map((work, index) => (
+                    <Card 
+                      key={index} 
+                      className={`reveal-text group relative overflow-hidden border border-gray-200 hover:border-black transition-all duration-300 hover:shadow-lg ${work.bgColor} ${
+                        work.size === 'large' ? 'md:col-span-2 md:row-span-2' : 
+                        work.size === 'medium' ? 'md:col-span-1 md:row-span-1' : 
+                        'md:col-span-1 md:row-span-1'
+                      }`}
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    >
+                      <div className="p-6 h-full flex flex-col">
+                        <div className="flex-1 mb-4">
+                          <span className="text-xs font-mono text-gray-500 uppercase tracking-wider">
+                            {work.category}
+                          </span>
+                          <h3 className="text-lg font-serif font-semibold mt-2 mb-2">
+                            {work.title}
+                          </h3>
+                          <p className="text-sm text-gray-600 leading-relaxed">
+                            {work.description}
+                          </p>
                         </div>
-                      </Card>
-                    </div>
+                        
+                        {/* Preview area */}
+                        <div className="mt-auto">
+                          <div className="w-full h-32 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center">
+                            <span className="text-xs text-gray-400 font-mono">Preview</span>
+                          </div>
+                        </div>
+                      </div>
+                    </Card>
                   ))}
                 </div>
-              )}
-
-              {/* Empty State */}
-              {uploadedImages.length === 0 && (
-                <div className="text-center text-gray-500 py-12">
-                  <p>No work uploaded yet. Start by uploading your first image!</p>
-                </div>
-              )}
+              </div>
             </section>
 
-            {/* Me Outside Tech Section */}
-            <section id="outside-tech" className="min-h-screen reveal-section py-24">
-              <h2 className="text-4xl font-serif font-bold mb-12 split-text">Me, Outside of Tech</h2>
-              <div className="space-y-8 text-gray-600">
-                <div className="reveal-text flex items-start gap-6">
-                  <span className="text-3xl">🎬</span>
-                  <p className="text-lg leading-relaxed">
-                    Love movies that mess with time, tech, and the mind (minus the horror).
-                  </p>
-                </div>
-                <div className="reveal-text flex items-start gap-6">
-                  <span className="text-3xl">🎧</span>
-                  <p className="text-lg leading-relaxed">
-                    Big fan of Hindi music — my background playlist while coding.
-                  </p>
-                </div>
-                <div className="reveal-text flex items-start gap-6">
-                  <span className="text-3xl">👀</span>
-                  <p className="text-lg leading-relaxed">
-                    Always thinking of the next big thing — even if it starts as a random idea at 2 AM.
-                  </p>
+            {/* Me Outside Tech Section with background grid */}
+            <section id="outside-tech" className="min-h-screen reveal-section py-24 relative">
+              {/* Background grid */}
+              <div 
+                className="absolute inset-0 opacity-20 pointer-events-none"
+                style={{
+                  backgroundImage: 
+                    'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
+                  backgroundSize: '40px 40px',
+                  backgroundPosition: '0 0, 0 0'
+                }}
+              />
+              <div className="relative z-10">
+                <h2 className="text-4xl font-serif font-bold mb-12 split-text">Me, Outside of Tech</h2>
+                <div className="space-y-8 text-gray-600">
+                  <div className="reveal-text flex items-start gap-6">
+                    <span className="text-3xl">🎬</span>
+                    <p className="text-lg leading-relaxed">
+                      Love movies that mess with time, tech, and the mind (minus the horror).
+                    </p>
+                  </div>
+                  <div className="reveal-text flex items-start gap-6">
+                    <span className="text-3xl">🎧</span>
+                    <p className="text-lg leading-relaxed">
+                      Big fan of Hindi music — my background playlist while coding.
+                    </p>
+                  </div>
+                  <div className="reveal-text flex items-start gap-6">
+                    <span className="text-3xl">👀</span>
+                    <p className="text-lg leading-relaxed">
+                      Always thinking of the next big thing — even if it starts as a random idea at 2 AM.
+                    </p>
+                  </div>
                 </div>
               </div>
             </section>
 
-            {/* Contact Section with horizontal icons and no bounce */}
-            <section id="contact" className="min-h-screen reveal-section py-24">
-              <h2 className="text-4xl font-serif font-bold mb-12 split-text">Let's Connect</h2>
-              <div className="flex justify-center items-center space-x-12">
-                {socialLinks.map((social, index) => (
-                  <a 
-                    key={social.name}
-                    href={social.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className={`reveal-text flex flex-col items-center space-y-2 text-black ${social.color} transition-all duration-300 hover:transform hover:translate-y-[-4px]`}
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    {social.icon}
-                    <span className="text-sm font-mono">{social.name}</span>
-                  </a>
-                ))}
+            {/* Contact Section with background grid */}
+            <section id="contact" className="min-h-screen reveal-section py-24 relative">
+              {/* Background grid */}
+              <div 
+                className="absolute inset-0 opacity-20 pointer-events-none"
+                style={{
+                  backgroundImage: 
+                    'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
+                  backgroundSize: '40px 40px',
+                  backgroundPosition: '0 0, 0 0'
+                }}
+              />
+              <div className="relative z-10">
+                <h2 className="text-4xl font-serif font-bold mb-12 split-text">Let's Connect</h2>
+                <div className="flex justify-center items-center space-x-12">
+                  {socialLinks.map((social, index) => (
+                    <a 
+                      key={social.name}
+                      href={social.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className={`reveal-text flex flex-col items-center space-y-2 text-black ${social.color} transition-all duration-300 hover:transform hover:translate-y-[-4px]`}
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    >
+                      {social.icon}
+                      <span className="text-sm font-mono">{social.name}</span>
+                    </a>
+                  ))}
+                </div>
               </div>
             </section>
           </main>
