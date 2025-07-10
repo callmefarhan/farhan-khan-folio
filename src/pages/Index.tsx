@@ -199,7 +199,7 @@ const Index = () => {
                     {/* Star doodle */}
                     <div 
                       className={`absolute transition-all duration-600 ${
-                        isHovering ? 'animate-doodle-bounce-slide' : 'animate-doodle-slide-back'
+                        isHovering ? 'animate-doodle-bounce-slide' : 'animate-doodle-bounce-slide-back'
                       }`}
                       style={{ 
                         '--slide-x': '-8rem', 
@@ -235,7 +235,7 @@ const Index = () => {
                     {/* Dots */}
                     <div 
                       className={`absolute flex space-x-1 transition-all duration-700 ${
-                        isHovering ? 'animate-doodle-bounce-slide' : 'animate-doodle-slide-back'
+                        isHovering ? 'animate-doodle-bounce-slide' : 'animate-doodle-bounce-slide-back'
                       }`}
                       style={{ 
                         '--slide-x': '6rem', 
@@ -256,7 +256,7 @@ const Index = () => {
                       height="20" 
                       viewBox="0 0 20 20" 
                       className={`absolute transition-all duration-800 ${
-                        isHovering ? 'animate-doodle-spin-slide' : 'animate-doodle-slide-back'
+                        isHovering ? 'animate-doodle-spin-slide' : 'animate-doodle-spin-slide-back'
                       }`}
                       style={{ 
                         '--slide-x': '4rem', 
@@ -309,7 +309,7 @@ const Index = () => {
                     {/* Small rotating square */}
                     <div 
                       className={`absolute w-4 h-4 bg-black transition-all duration-700 ${
-                        isHovering ? 'animate-doodle-spin-slide' : 'animate-doodle-slide-back'
+                        isHovering ? 'animate-doodle-spin-slide' : 'animate-doodle-spin-slide-back'
                       }`}
                       style={{ 
                         '--slide-x': '-6rem', 
