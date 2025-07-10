@@ -3,12 +3,13 @@ import CustomCursor from '../components/CustomCursor';
 import Navbar from '../components/Navbar';
 import LoadingScreen from '../components/LoadingScreen';
 import { Card } from '@/components/ui/card';
-import { Linkedin, Github, Twitter, Instagram } from 'lucide-react';
+import { Linkedin, Github, Twitter, Instagram, Upload, X } from 'lucide-react';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [uploadedImages, setUploadedImages] = useState<string[]>([]);
 
   // Define the projects array
   const projects = [
@@ -61,6 +62,25 @@ const Index = () => {
       color: "hover:text-pink-500"
     }
   ];
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files) {
+      Array.from(files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          if (e.target?.result) {
+            setUploadedImages(prev => [...prev, e.target!.result as string]);
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  };
+
+  const removeImage = (index: number) => {
+    setUploadedImages(prev => prev.filter((_, i) => i !== index));
+  };
 
   useEffect(() => {
     // Make sure all sections are visible on load
@@ -126,10 +146,21 @@ const Index = () => {
           <CustomCursor />
           <Navbar />
           
-          {/* Hero Section */}
+          {/* Hero Section with background grid */}
           <main className="pt-32 px-12 max-w-7xl mx-auto">
-            <section id="top" className="min-h-screen flex items-center gap-12">
-              <div className="flex-1">
+            <section id="top" className="min-h-screen flex items-center gap-12 relative">
+              {/* Background grid for hero section */}
+              <div 
+                className="absolute inset-0 opacity-30 pointer-events-none"
+                style={{
+                  backgroundImage: 
+                    'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
+                  backgroundSize: '40px 40px',
+                  backgroundPosition: '0 0, 0 0'
+                }}
+              />
+              
+              <div className="flex-1 relative z-10">
                 <h1 className="blur-reveal text-7xl font-serif italic font-normal mb-6 split-text">
                   Farhan Khan
                 </h1>
@@ -147,26 +178,15 @@ const Index = () => {
                 </div>
               </div>
 
-              {/* Profile Image Section */}
-              <div className="flex-1 flex justify-center items-center">
+              {/* Profile Image Section with doodles behind */}
+              <div className="flex-1 flex justify-center items-center relative z-10">
                 <div 
                   className="profile-image-container relative"
                   style={{ transform: 'translateY(-2rem)' }}
                   onMouseEnter={() => setIsHovering(true)}
                   onMouseLeave={() => setIsHovering(false)}
                 >
-                  {/* Main profile image with smooth transition */}
-                  <div 
-                    className="profile-image w-[28rem] h-[28rem] rounded-full overflow-hidden transition-transform duration-300 ease-out hover:scale-105 relative z-10"
-                    style={{ 
-                      transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
-                      backgroundImage: 'url("/lovable-uploads/0b94a337-800e-46de-a5cf-0d98363f91d5.png")',
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center'
-                    }}
-                  />
-                  
-                  {/* Animated doodles positioned at the back center */}
+                  {/* Animated doodles positioned behind the profile image */}
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none z-0">
                     {/* Circle doodle */}
                     <div 
@@ -339,6 +359,17 @@ const Index = () => {
                       <path d="M0 10 Q5 0, 10 10 T20 10 Q25 0, 30 10 T40 10" stroke="#000000" strokeWidth="2" fill="transparent"/>
                     </svg>
                   </div>
+
+                  {/* Main profile image */}
+                  <div 
+                    className="profile-image w-[28rem] h-[28rem] rounded-full overflow-hidden transition-transform duration-300 ease-out hover:scale-105 relative z-20"
+                    style={{ 
+                      transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+                      backgroundImage: 'url("/lovable-uploads/0b94a337-800e-46de-a5cf-0d98363f91d5.png")',
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
+                  />
                 </div>
               </div>
             </section>
@@ -363,26 +394,60 @@ const Index = () => {
               </div>
             </section>
 
-            {/* Work Section */}
+            {/* Work Section - Replace with Interactive Gallery */}
             <section id="work" className="min-h-screen reveal-section py-24">
-              <h2 className="text-4xl font-serif font-bold mb-12 split-text">Work</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {projects.map((project, index) => (
-                  <a 
-                    key={index} 
-                    href="https://github.com/callmefarhan" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="block"
-                  >
-                    <Card className="reveal-text group p-8 border border-gray-200 hover:border-black bg-transparent transition-all duration-300 h-full">
-                      <h3 className="text-2xl font-serif mb-4 text-black">{project.title}</h3>
-                      <p className="text-gray-600 mb-4">{project.description}</p>
-                      <p className="text-sm text-gray-600/70">{project.tech}</p>
-                    </Card>
-                  </a>
-                ))}
+              <h2 className="text-4xl font-serif font-bold mb-12 split-text">My Work</h2>
+              
+              {/* Upload Area */}
+              <div className="mb-12">
+                <label htmlFor="image-upload" className="block">
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-gray-400 transition-colors cursor-pointer">
+                    <Upload className="mx-auto mb-4 h-12 w-12 text-gray-400" />
+                    <p className="text-lg font-medium text-gray-700 mb-2">Upload your work</p>
+                    <p className="text-gray-500">Drag and drop images or click to select</p>
+                  </div>
+                </label>
+                <input
+                  id="image-upload"
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="hidden"
+                />
               </div>
+
+              {/* Gallery Grid */}
+              {uploadedImages.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {uploadedImages.map((image, index) => (
+                    <div key={index} className="reveal-text group relative">
+                      <Card className="overflow-hidden border border-gray-200 hover:border-black transition-all duration-300">
+                        <div className="relative">
+                          <img 
+                            src={image} 
+                            alt={`Uploaded work ${index + 1}`}
+                            className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <button
+                            onClick={() => removeImage(index)}
+                            className="absolute top-2 right-2 bg-black/50 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          >
+                            <X className="h-4 w-4" />
+                          </button>
+                        </div>
+                      </Card>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Empty State */}
+              {uploadedImages.length === 0 && (
+                <div className="text-center text-gray-500 py-12">
+                  <p>No work uploaded yet. Start by uploading your first image!</p>
+                </div>
+              )}
             </section>
 
             {/* Me Outside Tech Section */}
