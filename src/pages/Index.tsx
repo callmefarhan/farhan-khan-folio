@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import CustomCursor from '../components/CustomCursor';
 import Navbar from '../components/Navbar';
@@ -42,51 +41,33 @@ const Index = () => {
   const designWorks = [
     {
       title: "Sleepy Zoro Character Design",
-      category: "Character Design",
-      description: "Anime-inspired character illustration with vibrant colors",
       image: "/lovable-uploads/bc9fab5d-225f-4a18-8484-84418dbb2928.png",
-      size: "large", // takes more space
-      bgColor: "bg-pink-50"
+      size: "large",
     },
     {
       title: "Coffee & Camera Setup",
-      category: "Product Photography",
-      description: "Minimalist black and white composition",
       image: "/lovable-uploads/bc9fab5d-225f-4a18-8484-84418dbb2928.png",
       size: "medium",
-      bgColor: "bg-gray-50"
     },
     {
       title: "Typography Design",
-      category: "Brand Design",
-      description: "Modern typography with emotional messaging",
       image: "/lovable-uploads/bc9fab5d-225f-4a18-8484-84418dbb2928.png",
       size: "medium",
-      bgColor: "bg-red-50"
     },
     {
       title: "Synergy Brand Design",
-      category: "UI/UX Design",
-      description: "Clean interface design with call-to-action",
       image: "/lovable-uploads/bc9fab5d-225f-4a18-8484-84418dbb2928.png",
       size: "large",
-      bgColor: "bg-blue-50"
     },
     {
       title: "Ambient Car Wallpaper",
-      category: "Digital Art",
-      description: "Atmospheric landscape with dreamy colors",
       image: "/lovable-uploads/bc9fab5d-225f-4a18-8484-84418dbb2928.png",
       size: "small",
-      bgColor: "bg-purple-50"
     },
     {
       title: "Japanese Character Art",
-      category: "Illustration",
-      description: "Traditional Japanese art style with modern twist",
       image: "/lovable-uploads/bc9fab5d-225f-4a18-8484-84418dbb2928.png",
       size: "medium",
-      bgColor: "bg-orange-50"
     }
   ];
 
@@ -159,7 +140,7 @@ const Index = () => {
             <section id="top" className="min-h-screen flex items-center gap-12 relative">
               {/* Background grid for hero section */}
               <div 
-                className="absolute inset-0 opacity-20 pointer-events-none"
+                className="absolute inset-0 opacity-40 pointer-events-none"
                 style={{
                   backgroundImage: 
                     'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
@@ -186,21 +167,20 @@ const Index = () => {
                 </div>
               </div>
 
-              {/* Profile Image Section - simplified without doodles */}
+              {/* Profile Image Section */}
               <div className="flex-1 flex justify-center items-center relative z-10">
                 <div 
                   className="profile-image-container relative"
                   style={{ transform: 'translateY(-2rem)' }}
                 >
-                  {/* Main profile image with drop shadow */}
                   <div 
-                    className="profile-image w-[28rem] h-[28rem] rounded-full overflow-hidden transition-transform duration-300 ease-out hover:scale-105 relative z-20 shadow-2xl"
+                    className="profile-image w-[28rem] h-[28rem] rounded-full overflow-hidden transition-transform duration-300 ease-out hover:scale-105 relative z-20"
                     style={{ 
                       transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
                       backgroundImage: 'url("/lovable-uploads/0b94a337-800e-46de-a5cf-0d98363f91d5.png")',
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
-                      filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15))'
+                      filter: 'drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15))'
                     }}
                   />
                 </div>
@@ -211,7 +191,7 @@ const Index = () => {
             <section id="about" className="min-h-screen reveal-section py-24 relative">
               {/* Background grid */}
               <div 
-                className="absolute inset-0 opacity-20 pointer-events-none"
+                className="absolute inset-0 opacity-40 pointer-events-none"
                 style={{
                   backgroundImage: 
                     'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
@@ -243,7 +223,7 @@ const Index = () => {
             <section id="work" className="min-h-screen reveal-section py-24 relative">
               {/* Background grid */}
               <div 
-                className="absolute inset-0 opacity-20 pointer-events-none"
+                className="absolute inset-0 opacity-40 pointer-events-none"
                 style={{
                   backgroundImage: 
                     'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
@@ -259,30 +239,24 @@ const Index = () => {
                   {designWorks.map((work, index) => (
                     <Card 
                       key={index} 
-                      className={`reveal-text group relative overflow-hidden border border-gray-200 hover:border-black transition-all duration-300 hover:shadow-lg ${work.bgColor} ${
+                      className={`reveal-text group relative overflow-hidden border border-gray-200 hover:border-black transition-all duration-300 hover:shadow-lg ${
                         work.size === 'large' ? 'md:col-span-2 md:row-span-2' : 
                         work.size === 'medium' ? 'md:col-span-1 md:row-span-1' : 
                         'md:col-span-1 md:row-span-1'
                       }`}
                       style={{ animationDelay: `${index * 0.1}s` }}
                     >
-                      <div className="p-6 h-full flex flex-col">
-                        <div className="flex-1 mb-4">
-                          <span className="text-xs font-mono text-gray-500 uppercase tracking-wider">
-                            {work.category}
-                          </span>
-                          <h3 className="text-lg font-serif font-semibold mt-2 mb-2">
-                            {work.title}
-                          </h3>
-                          <p className="text-sm text-gray-600 leading-relaxed">
-                            {work.description}
-                          </p>
-                        </div>
-                        
-                        {/* Preview area */}
-                        <div className="mt-auto">
-                          <div className="w-full h-32 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center">
-                            <span className="text-xs text-gray-400 font-mono">Preview</span>
+                      <div className="h-full relative">
+                        <img 
+                          src={work.image} 
+                          alt={work.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-end">
+                          <div className="p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <h3 className="text-lg font-serif font-semibold">
+                              {work.title}
+                            </h3>
                           </div>
                         </div>
                       </div>
@@ -296,7 +270,7 @@ const Index = () => {
             <section id="outside-tech" className="min-h-screen reveal-section py-24 relative">
               {/* Background grid */}
               <div 
-                className="absolute inset-0 opacity-20 pointer-events-none"
+                className="absolute inset-0 opacity-40 pointer-events-none"
                 style={{
                   backgroundImage: 
                     'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
@@ -333,7 +307,7 @@ const Index = () => {
             <section id="contact" className="min-h-screen reveal-section py-24 relative">
               {/* Background grid */}
               <div 
-                className="absolute inset-0 opacity-20 pointer-events-none"
+                className="absolute inset-0 opacity-40 pointer-events-none"
                 style={{
                   backgroundImage: 
                     'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
