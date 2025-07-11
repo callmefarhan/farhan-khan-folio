@@ -3,7 +3,7 @@ import CustomCursor from '../components/CustomCursor';
 import Navbar from '../components/Navbar';
 import LoadingScreen from '../components/LoadingScreen';
 import { Card } from '@/components/ui/card';
-import { Linkedin, Github, Twitter, Instagram } from 'lucide-react';
+import { Linkedin, Github, Behance, Instagram } from 'lucide-react';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,10 +24,10 @@ const Index = () => {
       color: "hover:text-gray-600"
     },
     {
-      name: "Twitter",
-      icon: <Twitter className="h-8 w-8" />,
-      link: "https://x.com/FarhanK42363",
-      color: "hover:text-blue-400"
+      name: "Behance",
+      icon: <Behance className="h-8 w-8" />,
+      link: "https://behance.net/yourusername",
+      color: "hover:text-blue-500"
     },
     {
       name: "Instagram",
@@ -72,7 +72,6 @@ const Index = () => {
   ];
 
   useEffect(() => {
-    // Make sure all sections are visible on load
     const revealSections = () => {
       const sections = document.querySelectorAll('.reveal-section');
       sections.forEach(section => {
@@ -140,7 +139,7 @@ const Index = () => {
             <section id="top" className="min-h-screen flex items-center gap-12 relative">
               {/* Background grid for hero section */}
               <div 
-                className="absolute inset-0 opacity-40 pointer-events-none"
+                className="absolute inset-0 opacity-60 pointer-events-none"
                 style={{
                   backgroundImage: 
                     'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
@@ -150,7 +149,7 @@ const Index = () => {
               />
               
               <div className="flex-1 relative z-10">
-                <h1 className="blur-reveal text-7xl font-serif italic font-normal mb-6 split-text">
+                <h1 className="blur-reveal text-7xl font-serif italic font-normal mb-6">
                   Farhan Khan
                 </h1>
                 <div className="fade-in text-gray-600 text-xl mb-8 font-mono">
@@ -180,7 +179,7 @@ const Index = () => {
                       backgroundImage: 'url("/lovable-uploads/0b94a337-800e-46de-a5cf-0d98363f91d5.png")',
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
-                      filter: 'drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15))'
+                      filter: 'drop-shadow(0 15px 40px rgba(0, 0, 0, 0.2))'
                     }}
                   />
                 </div>
@@ -191,7 +190,7 @@ const Index = () => {
             <section id="about" className="min-h-screen reveal-section py-24 relative">
               {/* Background grid */}
               <div 
-                className="absolute inset-0 opacity-40 pointer-events-none"
+                className="absolute inset-0 opacity-60 pointer-events-none"
                 style={{
                   backgroundImage: 
                     'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
@@ -200,7 +199,7 @@ const Index = () => {
                 }}
               />
               <div className="relative z-10">
-                <h2 className="text-4xl font-serif font-bold mb-12 split-text">About Me</h2>
+                <h2 className="text-4xl font-serif font-bold mb-12">About Me</h2>
                 <div className="space-y-6 text-gray-600">
                   <p className="text-lg leading-relaxed reveal-text">
                     I'm someone who believes that meaningful tech starts with purpose.
@@ -223,7 +222,7 @@ const Index = () => {
             <section id="work" className="min-h-screen reveal-section py-24 relative">
               {/* Background grid */}
               <div 
-                className="absolute inset-0 opacity-40 pointer-events-none"
+                className="absolute inset-0 opacity-60 pointer-events-none"
                 style={{
                   backgroundImage: 
                     'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
@@ -232,7 +231,7 @@ const Index = () => {
                 }}
               />
               <div className="relative z-10">
-                <h2 className="text-4xl font-serif font-bold mb-12 split-text">My Work</h2>
+                <h2 className="text-4xl font-serif font-bold mb-12">My Work</h2>
                 
                 {/* Bento Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-fr">
@@ -270,7 +269,7 @@ const Index = () => {
             <section id="outside-tech" className="min-h-screen reveal-section py-24 relative">
               {/* Background grid */}
               <div 
-                className="absolute inset-0 opacity-40 pointer-events-none"
+                className="absolute inset-0 opacity-60 pointer-events-none"
                 style={{
                   backgroundImage: 
                     'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
@@ -279,7 +278,7 @@ const Index = () => {
                 }}
               />
               <div className="relative z-10">
-                <h2 className="text-4xl font-serif font-bold mb-12 split-text">Me, Outside of Tech</h2>
+                <h2 className="text-4xl font-serif font-bold mb-12">Me, Outside of Tech</h2>
                 <div className="space-y-8 text-gray-600">
                   <div className="reveal-text flex items-start gap-6">
                     <span className="text-3xl">🎬</span>
@@ -307,7 +306,7 @@ const Index = () => {
             <section id="contact" className="min-h-screen reveal-section py-24 relative">
               {/* Background grid */}
               <div 
-                className="absolute inset-0 opacity-40 pointer-events-none"
+                className="absolute inset-0 opacity-60 pointer-events-none"
                 style={{
                   backgroundImage: 
                     'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
@@ -316,8 +315,8 @@ const Index = () => {
                 }}
               />
               <div className="relative z-10">
-                <h2 className="text-4xl font-serif font-bold mb-12 split-text">Let's Connect</h2>
-                <div className="flex justify-center items-center space-x-12">
+                <h2 className="text-4xl font-serif font-bold mb-12">Let's Connect</h2>
+                <div className="flex flex-col justify-center items-center space-y-8">
                   {socialLinks.map((social, index) => (
                     <a 
                       key={social.name}

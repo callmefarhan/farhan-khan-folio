@@ -14,24 +14,29 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50">
+    <nav className="fixed top-10 left-1/2 transform -translate-x-1/2 z-50">
       <div 
         className={`relative transition-all duration-300 ease-in-out border-2 border-black rounded-full bg-transparent backdrop-blur-sm ${
-          isHovered ? 'px-8 py-3' : 'px-6 py-3'
+          isHovered ? 'px-10 py-4' : 'px-7 py-4'
         }`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* FK. Logo - always visible */}
         <button 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
-          className="text-black font-sans hover:text-gray-600 transition-colors duration-300 text-lg font-medium cursor-pointer"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }} 
+          className="text-black font-sans hover:text-gray-600 transition-colors duration-300 text-xl font-medium cursor-pointer"
+          type="button"
         >
           FK.
         </button>
 
         {/* Left side menu items */}
-        <div className={`absolute right-full top-1/2 transform -translate-y-1/2 mr-4 flex gap-6 transition-all duration-300 ${
+        <div className={`absolute right-full top-1/2 transform -translate-y-1/2 mr-5 flex gap-7 transition-all duration-300 ${
           isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4 pointer-events-none'
         }`}>
           {['about', 'work'].map((item) => (
@@ -42,7 +47,7 @@ const Navbar = () => {
                 e.stopPropagation();
                 scrollToSection(item);
               }} 
-              className="text-sm text-black hover:text-gray-600 transition-colors duration-300 whitespace-nowrap cursor-pointer"
+              className="text-base text-black hover:text-gray-600 transition-colors duration-300 whitespace-nowrap cursor-pointer"
               type="button"
             >
               {item.toUpperCase()}
@@ -51,7 +56,7 @@ const Navbar = () => {
         </div>
 
         {/* Right side menu items */}
-        <div className={`absolute left-full top-1/2 transform -translate-y-1/2 ml-4 flex gap-6 transition-all duration-300 ${
+        <div className={`absolute left-full top-1/2 transform -translate-y-1/2 ml-5 flex gap-7 transition-all duration-300 ${
           isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none'
         }`}>
           {['outside-tech', 'contact'].map((item) => (
@@ -62,7 +67,7 @@ const Navbar = () => {
                 e.stopPropagation();
                 scrollToSection(item);
               }} 
-              className="text-sm text-black hover:text-gray-600 transition-colors duration-300 whitespace-nowrap cursor-pointer"
+              className="text-base text-black hover:text-gray-600 transition-colors duration-300 whitespace-nowrap cursor-pointer"
               type="button"
             >
               {item.toUpperCase().replace('-', ' ')}
@@ -73,7 +78,7 @@ const Navbar = () => {
         {/* Invisible hover area to prevent menu retraction */}
         <div 
           className={`absolute inset-0 transition-all duration-300 ${
-            isHovered ? 'w-[280px] h-[60px] -left-[140px] -top-[15px]' : 'w-full h-full'
+            isHovered ? 'w-[336px] h-[72px] -left-[168px] -top-[18px]' : 'w-full h-full'
           }`}
         />
       </div>
