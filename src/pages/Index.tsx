@@ -3,7 +3,7 @@ import CustomCursor from '../components/CustomCursor';
 import Navbar from '../components/Navbar';
 import LoadingScreen from '../components/LoadingScreen';
 import { Card } from '@/components/ui/card';
-import { Linkedin, Github, Behance, Instagram } from 'lucide-react';
+import { Linkedin, Github, Instagram, Palette } from 'lucide-react';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,7 +25,7 @@ const Index = () => {
     },
     {
       name: "Behance",
-      icon: <Behance className="h-8 w-8" />,
+      icon: <Palette className="h-8 w-8" />,
       link: "https://behance.net/yourusername",
       color: "hover:text-blue-500"
     },
