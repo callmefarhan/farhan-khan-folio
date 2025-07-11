@@ -25,7 +25,7 @@ const Navbar = () => {
         {/* FK. Logo - always visible */}
         <button 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
-          className="text-black font-sans hover:text-gray-600 transition-colors duration-300 text-lg font-medium"
+          className="text-black font-sans hover:text-gray-600 transition-colors duration-300 text-lg font-medium cursor-pointer"
         >
           FK.
         </button>
@@ -37,8 +37,13 @@ const Navbar = () => {
           {['about', 'work'].map((item) => (
             <button 
               key={item}
-              onClick={() => scrollToSection(item)} 
-              className="text-sm text-black hover:text-gray-600 transition-colors duration-300 whitespace-nowrap"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                scrollToSection(item);
+              }} 
+              className="text-sm text-black hover:text-gray-600 transition-colors duration-300 whitespace-nowrap cursor-pointer"
+              type="button"
             >
               {item.toUpperCase()}
             </button>
@@ -52,8 +57,13 @@ const Navbar = () => {
           {['outside-tech', 'contact'].map((item) => (
             <button 
               key={item}
-              onClick={() => scrollToSection(item)} 
-              className="text-sm text-black hover:text-gray-600 transition-colors duration-300 whitespace-nowrap"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                scrollToSection(item);
+              }} 
+              className="text-sm text-black hover:text-gray-600 transition-colors duration-300 whitespace-nowrap cursor-pointer"
+              type="button"
             >
               {item.toUpperCase().replace('-', ' ')}
             </button>
